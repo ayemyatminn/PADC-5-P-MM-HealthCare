@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/margin_medium"
+    android:layout_marginRight="@dimen/margin_medium"
+    android:layout_marginBottom="@dimen/margin_medium">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAuthorImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/dummy_doctor"
+            android:layout_marginRight="@dimen/margin_large"/>
+
+        <org.mmtextview.components.MMTextView
+            android:id="@+id/tvAuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Steven"
+            android:layout_toRightOf="@id/ivAuthorImage"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x"
+            android:textStyle="italic|bold"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/tvPublishDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tvAuthorName"
+            android:text="2018/7/13"
+            android:layout_below="@id/tvAuthorName"
+            android:textColor="@color/black_full"
+            android:textSize="@dimen/text_regular"
+            android:fontFamily="monospace" />
+
+    </RelativeLayout>
+
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvHealthTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:text="How to Do When You Feel Depressed"
+        android:textColor="@color/primary_text"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:textSize="@dimen/text_regular_2x"/>
+
+    <ImageView
+        android:id="@+id/ivHealthImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/dummy_health"
+        android:scaleType="centerCrop"/>
+
+    <org.mmtextview.components.MMTextView
+        android:id="@+id/tvHealthBrief"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:textColor="@color/primary_text"
+        android:lineSpacingMultiplier="1.3"
+        android:textSize="@dimen/text_regular"
+        android:maxLines="5"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:text="လူသားေတြအတြက္ အေကာင္းဆံုး အိပ္စက္အနားယူခ်ိန္ဟာ ည ၁၁ နာရီမွ မနက္ ၃ နာရီအတြင္းျဖစ္တယ္လို့ သိရပါတယ္။ ၁၁-၃ အတြင္း အနားမယူပဲ အလုပ္တစ္ခုခု လုပ္ေနမယ္ဆိုရင္ က်နး္မာေရးကို ထိခိုက္ေစလိမ့္မယ္။ အေၾကာင္းကေတာ့ လူ့ခႏၶာကိုယ္ထဲမွာ အဓိကအေရးၾကီ"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="#efeaea" />
+
+</LinearLayout>
