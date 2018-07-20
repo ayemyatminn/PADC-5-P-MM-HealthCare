@@ -3,6 +3,7 @@ package com.padcmyanmar.mmhealthcare.data.model
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.padcmyanmar.mmhealthcare.networks.HealthAPI
+import com.padcmyanmar.mmhealthcare.persistance.AppDatabase
 import com.padcmyanmar.mmhealthcare.utils.AppConstance
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit
 abstract class BaseModel (context: Context){
 
     protected var mAPI:HealthAPI?=null
+    protected var mDB:AppDatabase?=null
     init {
         val httpClient = OkHttpClient.Builder()
                 .connectTimeout(60, TimeUnit.SECONDS)
@@ -25,6 +27,7 @@ abstract class BaseModel (context: Context){
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         mAPI = retrofit.create(HealthAPI::class.java)
+        mDB= AppDatabase.getInstance(context)
 
     }
 

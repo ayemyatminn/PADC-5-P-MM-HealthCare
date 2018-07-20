@@ -1,5 +1,6 @@
 package com.padcmyanmar.mmhealthcare.data.model
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import com.padcmyanmar.mmhealthcare.data.VO.HealthVO
@@ -38,6 +39,8 @@ class HealthModel(context: Context):BaseModel(context) {
                     override fun onNext(response: GetHealthResponse) {
                         if (response.getHealthList() != null && response.getHealthList()!!.isNotEmpty())
                             mHealthListLD!!.value=response.getHealthList()
+                            saveIntoDB(response.getHealthList())
+
                     }
 
                     override fun onError(e: Throwable) {
@@ -48,6 +51,14 @@ class HealthModel(context: Context):BaseModel(context) {
                     }
 
                 })
+    }
+
+    private fun saveIntoDB(list:List<HealthVO>){
+        mDB!!.healthCareInfoDao().insertAll(list!!)
+    }
+
+    private fun getFromDB():LiveData<List<HealthVO>>{
+        return mDB!!.healthCareInfoDao().getAllData()
     }
 
 

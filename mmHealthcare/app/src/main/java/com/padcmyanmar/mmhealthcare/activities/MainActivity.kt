@@ -2,6 +2,8 @@ package com.padcmyanmar.mmhealthcare.activities
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.R.id.message
 import android.support.design.widget.Snackbar
@@ -13,13 +15,13 @@ import android.widget.Toast
 import com.padcmyanmar.mmhealthcare.R
 import com.padcmyanmar.mmhealthcare.adapters.HealthAdapter
 import com.padcmyanmar.mmhealthcare.data.VO.HealthVO
+import com.padcmyanmar.mmhealthcare.data.model.HealthModel
 import com.padcmyanmar.mmhealthcare.mvp.Presenter.HealthPresenter
 import com.padcmyanmar.mmhealthcare.mvp.View.HealthView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() , HealthView{
-
 
     private var mAdapter:HealthAdapter?=null
     private var mPresenter:HealthPresenter?=null
@@ -34,11 +36,14 @@ class MainActivity : BaseActivity() , HealthView{
                     .setAction("Action", null).show()
 
         }
-        mAdapter= HealthAdapter(applicationContext)
+        HealthModel.initHealthModel(applicationContext)
+        mPresenter= HealthPresenter(this)
+        mAdapter= HealthAdapter(applicationContext, mPresenter!!)
         rvHealthCare.adapter=mAdapter
         rvHealthCare.layoutManager=LinearLayoutManager(this)
 
-        mPresenter= HealthPresenter(this)
+
+
         mPresenter!!.getHealthList().observe(this, Observer<List<HealthVO>> {
             response->displayHealthList(response!!)
         })
@@ -69,5 +74,11 @@ class MainActivity : BaseActivity() , HealthView{
 
     override fun displayError(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun displayUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+
     }
 }
